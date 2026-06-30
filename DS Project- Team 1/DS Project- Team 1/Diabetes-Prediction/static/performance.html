@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlucoVita | Model Performance &amp; Diabetes Education</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&amp;family=Geist:wght@500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#2f3a4c",
+                        "on-secondary": "#003915",
+                        "secondary": "#4ae176",
+                        "outline": "#87929a",
+                        "surface-container-highest": "#2a3548",
+                        "surface-tint": "#7bd0ff",
+                        "secondary-container": "#00b954",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#00668a",
+                        "surface-container-high": "#1f2a3c",
+                        "on-secondary-fixed-variant": "#005321",
+                        "tertiary-fixed": "#e0e0ff",
+                        "primary-fixed-dim": "#7bd0ff",
+                        "tertiary-fixed-dim": "#bdc2ff",
+                        "on-secondary-container": "#004119",
+                        "on-tertiary-fixed-variant": "#2f3aa3",
+                        "on-background": "#d8e3fb",
+                        "primary-container": "#38bdf8",
+                        "on-tertiary-container": "#2c37a0",
+                        "on-secondary-fixed": "#002109",
+                        "background": "#081425",
+                        "inverse-on-surface": "#263143",
+                        "on-primary": "#00354a",
+                        "on-primary-container": "#004965",
+                        "surface-container-low": "#111c2d",
+                        "surface-dim": "#081425",
+                        "tertiary-container": "#a3abff",
+                        "surface": "#081425",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#001e2c",
+                        "on-primary-fixed-variant": "#004c69",
+                        "outline-variant": "#3e484f",
+                        "on-surface-variant": "#bdc8d1",
+                        "primary": "#8ed5ff",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#040e1f",
+                        "on-surface": "#d8e3fb",
+                        "surface-container": "#152031",
+                        "inverse-surface": "#d8e3fb",
+                        "on-tertiary": "#131e8c",
+                        "secondary-fixed": "#6bff8f",
+                        "on-error": "#690005",
+                        "primary-fixed": "#c4e7ff",
+                        "surface-variant": "#2a3548",
+                        "on-tertiary-fixed": "#000767",
+                        "secondary-fixed-dim": "#4ae176",
+                        "tertiary": "#c5c9ff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-md": "16px",
+                        "container-padding": "32px",
+                        "stack-sm": "8px",
+                        "gutter": "24px",
+                        "unit": "4px",
+                        "stack-lg": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-xl": ["Inter"],
+                        "body-md": ["Inter"],
+                        "label-md": ["Geist"],
+                        "display-lg": ["Inter"],
+                        "label-sm": ["Geist"],
+                        "display-lg-mobile": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                        "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .glass-button {
+            background: linear-gradient(135deg, rgba(142, 213, 255, 0.1) 0%, rgba(142, 213, 255, 0.05) 100%);
+            border: 1px solid rgba(142, 213, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-button:hover {
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+            border-color: rgba(142, 213, 255, 0.5);
+            transform: translateY(-1px);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.85s ease-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        @keyframes comet-glow {
+            0% { filter: drop-shadow(0 0 2px #38bdf8); }
+            50% { filter: drop-shadow(0 0 8px #38bdf8); }
+            100% { filter: drop-shadow(0 0 2px #38bdf8); }
+        }
+        .glow-active {
+            animation: comet-glow 2s infinite ease-in-out;
+        }
+        .chart-grid {
+            background-image: radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen selection:bg-primary/30">
+
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-white/12 shadow-2xl shadow-primary/5">
+<div class="max-w-7xl mx-auto px-container-padding h-20 flex justify-between items-center">
+<div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter">GlucoVita</div>
+<div class="hidden md:flex items-center gap-gutter">
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/" href="/index.html">Home</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/" href="/predict.html">Predict</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/" href="/explain.html">Explainability</a>
+<a class="font-body-md text-label-md text-primary border-b-2 border-primary pb-1" href="/" href="/performance.html">Model</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/">About</a>
+<a class="font-body-md text-label-md text-on-surface-variant hover:text-on-surface transition-colors" href="/">Docs</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="hidden lg:block font-body-md text-label-md text-on-surface-variant hover:text-primary transition-colors">GitHub</button>
+
+</div>
+</div>
+</nav>
+<main class="pt-28 pb-stack-lg px-container-padding max-w-7xl mx-auto xl:ml-80">
+
+<section class="mb-stack-lg">
+<div class="flex items-end justify-between mb-stack-md">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary mb-2">Performance Dashboard</h1>
+<p class="text-on-surface-variant font-body-md max-w-2xl">Real-time analytical breakdown of GlucoVita v2.1. Optimized for precision in early-onset detection using the G-Series Synthetic Dataset.</p>
+</div>
+<div class="hidden md:flex gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-xs font-bold">STABLE</span>
+<span class="px-3 py-1 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold">V2.1.4</span>
+</div>
+</div>
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-gutter mb-gutter">
+
+<div class="glass-panel p-gutter rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary progress-ring__circle glow-active" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="13" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-on-surface">95%</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Accuracy</div>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-secondary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="21" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-on-surface">92%</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Precision</div>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-tertiary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-tertiary progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="10" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-on-surface">96%</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">Recall</div>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-primary-container/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-primary-container progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="16" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-on-surface">94%</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">F1 Score</div>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl flex flex-col items-center justify-center text-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-24 h-24 mb-4">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-white progress-ring__circle" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="5" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center font-bold text-headline-lg text-on-surface">98%</div>
+</div>
+<div class="text-label-md font-label-md text-on-surface-variant uppercase tracking-widest">ROC AUC</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-gutter">
+
+<div class="glass-panel p-gutter rounded-xl">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-lg text-label-md text-on-surface">Confusion Matrix</h3>
+<span class="material-symbols-outlined text-on-surface-variant">info</span>
+</div>
+<div class="grid grid-cols-2 gap-4 h-64">
+<div class="bg-primary/20 border border-primary/30 rounded-lg flex flex-col items-center justify-center">
+<div class="text-headline-xl font-bold text-primary">842</div>
+<div class="text-xs uppercase text-primary/80 tracking-tighter">True Positive</div>
+</div>
+<div class="bg-surface-container border border-white/5 rounded-lg flex flex-col items-center justify-center opacity-40">
+<div class="text-headline-xl font-bold">12</div>
+<div class="text-xs uppercase tracking-tighter">False Negative</div>
+</div>
+<div class="bg-surface-container border border-white/5 rounded-lg flex flex-col items-center justify-center opacity-40">
+<div class="text-headline-xl font-bold">24</div>
+<div class="text-xs uppercase tracking-tighter">False Positive</div>
+</div>
+<div class="bg-secondary/20 border border-secondary/30 rounded-lg flex flex-col items-center justify-center">
+<div class="text-headline-xl font-bold text-secondary">1120</div>
+<div class="text-xs uppercase text-secondary/80 tracking-tighter">True Negative</div>
+</div>
+</div>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl chart-grid">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-headline-lg text-label-md text-on-surface">Receiver Operating Characteristic</h3>
+<div class="flex items-center gap-2">
+<div class="w-3 h-3 rounded-full bg-primary"></div>
+<span class="text-xs text-on-surface-variant">Model v2.1</span>
+</div>
+</div>
+<div class="h-64 relative">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 100 100">
+
+<line stroke="rgba(255,255,255,0.1)" stroke-dasharray="4" stroke-width="1" x1="0" x2="100" y1="100" y2="0"></line>
+
+<path d="M 0 100 Q 0 0 100 0" fill="none" stroke="#38bdf8" stroke-linecap="round" stroke-width="3" style="filter: drop-shadow(0 0 8px rgba(56,189,248,0.4))"></path>
+
+<path d="M 0 100 Q 0 0 100 0 L 100 100 Z" fill="url(#roc-gradient)"></path>
+<defs>
+<lineargradient id="roc-gradient" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" style="stop-color:#38bdf8; stop-opacity:0.1"></stop>
+<stop offset="100%" style="stop-color:#38bdf8; stop-opacity:0"></stop>
+</lineargradient>
+</defs>
+</svg>
+<div class="absolute bottom-0 left-0 text-[10px] text-on-surface-variant -mb-4">False Positive Rate</div>
+<div class="absolute top-0 left-0 text-[10px] text-on-surface-variant -ml-8 origin-bottom-left -rotate-90">True Positive Rate</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="mt-stack-lg">
+<div class="mb-stack-md">
+<h2 class="font-headline-xl text-headline-xl text-secondary mb-2">Understanding Diabetes</h2>
+<p class="text-on-surface-variant font-body-md max-w-2xl">GlucoVita is more than a predictor; it's an educational companion. Knowledge is the first step toward effective management.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+
+<div class="glass-panel p-gutter rounded-xl hover:translate-y-[-4px] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-error/10 flex items-center justify-center mb-gutter">
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Key Symptoms</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
+                            Extreme thirst (polydipsia) and frequent urination.
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
+                            Unexplained weight loss and persistent fatigue.
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">check_circle</span>
+                            Blurred vision or slow-healing sores.
+                        </li>
+</ul>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl hover:translate-y-[-4px] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-gutter">
+<span class="material-symbols-outlined text-primary">diversity_1</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Risk Factors</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">info</span>
+                            Family history and genetic predisposition.
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">info</span>
+                            Physical inactivity and body mass index (BMI).
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-secondary text-sm mt-1">info</span>
+                            Age, particularly being over 45 years old.
+                        </li>
+</ul>
+</div>
+
+<div class="glass-panel p-gutter rounded-xl hover:translate-y-[-4px] transition-transform duration-300">
+<div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center mb-gutter">
+<span class="material-symbols-outlined text-secondary">spa</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg text-on-surface mb-stack-sm">Actionable Tips</h3>
+<ul class="space-y-3">
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-primary text-sm mt-1">tips_and_updates</span>
+                            Prioritize fiber-rich foods and whole grains.
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-primary text-sm mt-1">tips_and_updates</span>
+                            Maintain 150 minutes of moderate activity weekly.
+                        </li>
+<li class="flex items-start gap-2 text-on-surface-variant text-label-md">
+<span class="material-symbols-outlined text-primary text-sm mt-1">tips_and_updates</span>
+                            Regular glucose monitoring and medical checkups.
+                        </li>
+</ul>
+</div>
+</div>
+
+<div class="mt-gutter glass-panel p-0 rounded-2xl overflow-hidden relative min-h-[300px] flex flex-col md:flex-row">
+<div class="w-full md:w-1/2 p-gutter flex flex-col justify-center">
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full w-fit text-xs font-bold mb-4 uppercase tracking-widest">Medical Insight</div>
+<h4 class="font-headline-xl text-headline-xl mb-4">The Role of Insulin</h4>
+<p class="text-on-surface-variant font-body-lg mb-6">Insulin acts like a key, unlocking your cells so they can absorb glucose from your bloodstream for energy. In diabetes, this mechanism is either compromised or absent.</p>
+<button class="glass-button w-fit px-8 py-3 rounded-xl font-label-md flex items-center gap-2">
+                        Read Medical Docs
+                        <span class="material-symbols-outlined text-sm">open_in_new</span>
+</button>
+</div>
+<div class="w-full md:w-1/2 h-64 md:h-auto relative">
+<div class="absolute inset-0 bg-cover bg-center" data-alt="A high-tech 3D medical visualization of human cells and vibrant blue glucose molecules. The scene is lit with a futuristic, clean neon-blue and soft green glow, reflecting a professional laboratory setting. The artistic style is hyper-realistic medical CGI, emphasizing transparency and molecular precision against a deep navy background." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuB4N1o8sgDdbZH3nTjWr7lEyDX96es_WKqyhZFschv_472l1pAzoY9YNWzdqNu_Pa2zBLWQPjIka-2vTvak17J3a4UUmFFgA-eXa9sBXL6yK1LOCICwPQq_YN31HGUAb7oMCvoVopmQVtC3hP-TDj1WoW8ANpmjQVPqBD6wIOm_Ao0BmWG8q8VbpysrWEbDAE-SxyGcUeCt5NSXDNBeqRxdH7Wys62Bz3RjVf5T3z4BfVF3yYJerTdV8sGCM3w3Y_2lpAmXBAbaAow')"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-background/80 to-transparent md:block hidden"></div>
+</div>
+</div>
+</section>
+</main>
+
+<script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Animate progress rings on load
+            const rings = document.querySelectorAll('.progress-ring__circle');
+            rings.forEach(ring => {
+                const percent = ring.parentElement.nextElementSibling.textContent.replace('%', '');
+                const radius = ring.r.baseVal.value;
+                const circumference = radius * 2 * Math.PI;
+                const offset = circumference - (percent / 100 * circumference);
+                ring.style.strokeDashoffset = offset;
+            });
+
+            // Smooth Hover Effects for Glass Panels
+            const panels = document.querySelectorAll('.glass-panel');
+            panels.forEach(panel => {
+                panel.addEventListener('mousemove', (e) => {
+                    const rect = panel.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    panel.style.setProperty('--mouse-x', `${x}px`);
+                    panel.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        });
+    </script>
+<script src="/js/main.js"></script></body></html>

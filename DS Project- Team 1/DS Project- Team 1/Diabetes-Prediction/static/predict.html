@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>GlucoVita - Precision Diabetes Prediction</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-bright": "#2f3a4c",
+                    "on-secondary": "#003915",
+                    "secondary": "#4ae176",
+                    "outline": "#87929a",
+                    "surface-container-highest": "#2a3548",
+                    "surface-tint": "#7bd0ff",
+                    "secondary-container": "#00b954",
+                    "error-container": "#93000a",
+                    "inverse-primary": "#00668a",
+                    "surface-container-high": "#1f2a3c",
+                    "on-secondary-fixed-variant": "#005321",
+                    "tertiary-fixed": "#e0e0ff",
+                    "primary-fixed-dim": "#7bd0ff",
+                    "tertiary-fixed-dim": "#bdc2ff",
+                    "on-secondary-container": "#004119",
+                    "on-tertiary-fixed-variant": "#2f3aa3",
+                    "on-background": "#d8e3fb",
+                    "primary-container": "#38bdf8",
+                    "on-tertiary-container": "#2c37a0",
+                    "on-secondary-fixed": "#002109",
+                    "background": "#081425",
+                    "inverse-on-surface": "#263143",
+                    "on-primary": "#00354a",
+                    "on-primary-container": "#004965",
+                    "surface-container-low": "#111c2d",
+                    "surface-dim": "#081425",
+                    "tertiary-container": "#a3abff",
+                    "surface": "#081425",
+                    "on-error-container": "#ffdad6",
+                    "on-primary-fixed": "#001e2c",
+                    "on-primary-fixed-variant": "#004c69",
+                    "outline-variant": "#3e484f",
+                    "on-surface-variant": "#bdc8d1",
+                    "primary": "#8ed5ff",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#040e1f",
+                    "on-surface": "#d8e3fb",
+                    "surface-container": "#152031",
+                    "inverse-surface": "#d8e3fb",
+                    "on-tertiary": "#131e8c",
+                    "secondary-fixed": "#6bff8f",
+                    "on-error": "#690005",
+                    "primary-fixed": "#c4e7ff",
+                    "surface-variant": "#2a3548",
+                    "on-tertiary-fixed": "#000767",
+                    "secondary-fixed-dim": "#4ae176",
+                    "tertiary": "#c5c9ff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "stack-md": "16px",
+                    "container-padding": "32px",
+                    "stack-sm": "8px",
+                    "gutter": "24px",
+                    "unit": "4px",
+                    "stack-lg": "32px"
+            },
+            "fontFamily": {
+                    "headline-lg": ["Inter"],
+                    "body-lg": ["Inter"],
+                    "headline-xl": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-md": ["Geist"],
+                    "display-lg": ["Inter"],
+                    "label-sm": ["Geist"],
+                    "display-lg-mobile": ["Inter"]
+            },
+            "fontSize": {
+                    "headline-lg": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "headline-xl": ["36px", {"lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                    "display-lg": ["64px", {"lineHeight": "72px", "letterSpacing": "-0.04em", "fontWeight": "700"}],
+                    "label-sm": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                    "display-lg-mobile": ["40px", {"lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #081425;
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(74, 225, 118, 0.05) 0%, transparent 50%);
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .inner-glow:focus-within {
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+            border-color: #8ed5ff;
+        }
+        .pulse-prediction {
+            animation: pulse-glow 3s infinite ease-in-out;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(56, 189, 248, 0.1); }
+            50% { box-shadow: 0 0 40px rgba(56, 189, 248, 0.3); }
+        }
+        .progress-ring-circle {
+            transition: stroke-dashoffset 0.8s ease-in-out;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="font-body-md text-on-surface antialiased overflow-hidden">
+
+<nav class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl border-b border-white/12 shadow-2xl shadow-primary/5">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-container-padding h-20">
+<div class="font-headline-lg text-headline-lg font-bold text-primary tracking-tighter">GlucoVita</div>
+
+<div class="flex items-center gap-stack-md">
+</div>
+</div>
+</nav>
+
+<main class="pt-32 pb-stack-lg px-container-padding  max-w-7xl mx-auto">
+
+<div class="glass-panel rounded-2xl overflow-hidden shadow-2xl">
+<div class="grid grid-cols-1 lg:grid-cols-2">
+
+<div class="p-stack-lg lg:border-r border-white/12">
+<div class="flex items-center gap-4 mb-stack-lg">
+<div class="p-3 rounded-xl bg-primary/10 text-primary">
+<span class="material-symbols-outlined">person_search</span>
+</div>
+<div>
+<h1 class="font-headline-lg text-headline-lg text-on-surface">Diagnostic Parameters</h1>
+<p class="text-body-md text-on-surface-variant">Input patient biometric data for real-time analysis</p>
+</div>
+</div>
+<form class="space-y-gutter">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+
+<div class="relative group">
+<label class="block text-label-sm text-on-surface-variant mb-unit ml-1">Pregnancies</label>
+<div class="relative glass-panel rounded-lg inner-glow transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">child_care</span>
+<input class="w-full bg-transparent border-none pl-12 pr-4 py-3 text-on-surface focus:ring-0 placeholder:text-surface-variant" placeholder="0" type="number"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-help text-[18px]" title="Number of times pregnant">info</span>
+</div>
+</div>
+
+<div class="relative group">
+<label class="block text-label-sm text-on-surface-variant mb-unit ml-1">Glucose Level (mg/dL)</label>
+<div class="relative glass-panel rounded-lg inner-glow transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">bloodtype</span>
+<input class="w-full bg-transparent border-none pl-12 pr-4 py-3 text-on-surface focus:ring-0 placeholder:text-surface-variant" placeholder="120" type="number"/>
+</div>
+</div>
+
+<div class="relative group">
+<label class="block text-label-sm text-on-surface-variant mb-unit ml-1">Insulin (mu U/ml)</label>
+<div class="relative glass-panel rounded-lg inner-glow transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">vaccines</span>
+<input class="w-full bg-transparent border-none pl-12 pr-4 py-3 text-on-surface focus:ring-0 placeholder:text-surface-variant" placeholder="80" type="number"/>
+</div>
+</div>
+
+<div class="relative group">
+<label class="block text-label-sm text-on-surface-variant mb-unit ml-1">BMI (Body Mass Index)</label>
+<div class="relative glass-panel rounded-lg inner-glow transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">monitor_weight</span>
+<input class="w-full bg-transparent border-none pl-12 pr-4 py-3 text-on-surface focus:ring-0 placeholder:text-surface-variant" placeholder="24.5" step="0.1" type="number"/>
+</div>
+</div>
+
+<div class="relative group">
+<label class="block text-label-sm text-on-surface-variant mb-unit ml-1">Patient Age</label>
+<div class="relative glass-panel rounded-lg inner-glow transition-all">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant group-focus-within:text-primary transition-colors">event</span>
+<input class="w-full bg-transparent border-none pl-12 pr-4 py-3 text-on-surface focus:ring-0 placeholder:text-surface-variant" placeholder="45" type="number"/>
+</div>
+</div>
+</div>
+<div class="flex flex-col sm:flex-row gap-gutter pt-stack-md">
+<button class="flex-1 bg-gradient-to-r from-primary to-primary-container text-on-primary py-4 rounded-xl font-label-md text-label-md hover:shadow-[0_0_20px_rgba(56,189,248,0.3)] transition-all active:scale-95 flex items-center justify-center gap-2" type="button">
+<span class="material-symbols-outlined">analytics</span> Run Prediction
+                            </button>
+<button class="px-8 py-4 rounded-xl border border-white/12 text-on-surface-variant hover:bg-white/5 transition-all font-label-md text-label-md flex items-center justify-center gap-2" type="reset">
+<span class="material-symbols-outlined">restart_alt</span> Reset
+                            </button>
+</div>
+</form>
+
+</div>
+
+<div class="p-stack-lg bg-surface-container/20 flex flex-col items-center justify-center relative overflow-hidden">
+
+<div class="relative z-10 w-full max-w-sm">
+<div class="glass-panel rounded-2xl p-stack-lg text-center pulse-prediction border-primary/20">
+<span class="inline-flex px-3 py-1 rounded-full bg-error/10 text-error text-label-sm font-bold border border-error/20 mb-stack-md">
+<span class="material-symbols-outlined text-[14px] mr-1" data-weight="fill">warning</span> Likely Diabetes
+                            </span>
+
+<div class="relative w-48 h-48 mx-auto mb-stack-lg">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-white/5" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-width="8"></circle>
+<circle class="progress-ring-circle text-error" cx="50" cy="50" fill="transparent" r="42" stroke="currentColor" stroke-dasharray="264" stroke-dashoffset="58" stroke-linecap="round" stroke-width="8"></circle>
+</svg>
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<span class="text-5xl font-bold text-error leading-none" id="prediction-result">78%</span>
+<span class="text-label-sm text-on-surface-variant">Probability</span>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center mb-stack-lg">
+<div class="text-center">
+<p class="text-label-sm text-on-surface-variant">Risk Level</p>
+<p class="text-headline-lg text-error" id="risk-level-text">High</p>
+</div>
+</div>
+
+</div>
+
+</div>
+</div>
+</div>
+</div>
+
+</main>
+
+<script>
+        // Micro-interactions for form focus
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.classList.add('border-primary/50');
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.classList.remove('border-primary/50');
+            });
+        });
+        });
+    </script>
+    <script src="/js/main.js"></script>
+</body></html>

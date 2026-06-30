@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+    }
+  </style>
+</head>
+<body>
+
+<div class="fixed inset-0 w-full h-full bg-transparent" style="display:block;">
+<script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+<div id="threejs-container-ANIMATION_5" style="width:100%;height:100%"></div>
+<script>
+(function() {
+  const container = document.getElementById('threejs-container-ANIMATION_5');
+  const devicePixelRatio = window.devicePixelRatio || 1;
+  const width = container.clientWidth || window.innerWidth;
+const height = container.clientHeight || window.innerHeight;
+
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+renderer.setSize(width, height);
+renderer.setPixelRatio(window.devicePixelRatio);
+container.appendChild(renderer.domElement);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0x38BDF8, 2);
+pointLight.position.set(5, 5, 5);
+scene.add(pointLight);
+
+// Group to hold the "Medical/AI Core"
+const group = new THREE.Group();
+scene.add(group);
+
+// Central "AI Brain" Sphere
+const coreGeom = new THREE.IcosahedronGeometry(1.5, 2);
+const coreMat = new THREE.MeshPhongMaterial({ 
+    color: 0x38BDF8, 
+    wireframe: true,
+    transparent: true,
+    opacity: 0.8
+});
+const core = new THREE.Mesh(coreGeom, coreMat);
+group.add(core);
+
+// DNA-like outer rings
+const ringCount = 3;
+const rings = [];
+for(let i=0; i<ringCount; i++) {
+    const ringGeom = new THREE.TorusGeometry(2.5 + i*0.4, 0.02, 16, 100);
+    const ringMat = new THREE.MeshBasicMaterial({ color: 0x818CF8, transparent: true, opacity: 0.4 });
+    const ring = new THREE.Mesh(ringGeom, ringMat);
+    ring.rotation.x = Math.random() * Math.PI;
+    ring.rotation.y = Math.random() * Math.PI;
+    group.add(ring);
+    rings.push(ring);
+}
+
+// Floating "Data Points" (Particles)
+const partCount = 50;
+const partGeom = new THREE.BufferGeometry();
+const positions = new Float32Array(partCount * 3);
+for(let i=0; i<partCount; i++) {
+    positions[i*3] = (Math.random() - 0.5) * 8;
+    positions[i*3+1] = (Math.random() - 0.5) * 8;
+    positions[i*3+2] = (Math.random() - 0.5) * 8;
+}
+partGeom.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+const partMat = new THREE.PointsMaterial({ color: 0xffffff, size: 0.05, transparent: true, opacity: 0.6 });
+const points = new THREE.Points(partGeom, partMat);
+group.add(points);
+
+camera.position.z = 8;
+
+// Animation
+function animate() {
+    requestAnimationFrame(animate);
+    core.rotation.y += 0.005;
+    core.rotation.x += 0.003;
+    
+    rings.forEach((ring, i) => {
+        ring.rotation.x += 0.01 * (i+1);
+        ring.rotation.z += 0.005;
+    });
+    
+    points.rotation.y += 0.002;
+    
+    // Gentle floating motion
+    group.position.y = Math.sin(Date.now() * 0.001) * 0.2;
+    
+    renderer.render(scene, camera);
+}
+
+window.addEventListener('resize', () => {
+    const w = container.clientWidth || window.innerWidth;
+    const h = container.clientHeight || window.innerHeight;
+    renderer.setSize(w, h);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+});
+
+animate();
+})();
+</script>
+</div>
+
+</body>
+</html>
